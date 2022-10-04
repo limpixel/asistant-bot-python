@@ -20,6 +20,7 @@ webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
 # Wolfram Alpha client
 appId = '5R49J7-J888YX9J2V'
 wolframClient = wolframalpha.Client(appId)
+users = 'Halim'
  
 def speak(text, rate = 120):
     engine.setProperty('rate', rate)
@@ -111,7 +112,7 @@ if __name__ == '__main__':
             # List commands
             if query[0] == 'say':
                 if 'hello' in query:
-                    speak('Greetings, all.')
+                    speak(f'Hello Everyone, and how are you {users}')
                 else: 
                     query.pop(0) # Remove say
                     speech = ' '.join(query)
@@ -139,14 +140,6 @@ if __name__ == '__main__':
                 except:
                     speak('Unable to compute.')
  
-            # Note taking
-            if query[0] == 'notes':
-                speak('Ready to record your note')
-                newNote = parseCommand().lower()
-                now = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-                with open('note_%s.txt' % now, 'w') as newFile:
-                    newFile.write(newNote)
-                speak('Note written')
  
             if query[0] == 'exit':
                 speak('Goodbye')
